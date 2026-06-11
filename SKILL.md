@@ -16,7 +16,7 @@ description: >-
   user doesn't say "look again" literally.
 compatibility: Claude Code (persistent disk at ~/.claude/look-again/) and Claude.ai (file presented for download; recall requires the user to upload their saved files).
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   author: sametbrr@gmail.com
 ---
 
@@ -62,12 +62,16 @@ The purpose of an entry is **seamless continuation**: a future session reading o
 
 Use the template at [assets/entry-template.md](assets/entry-template.md). Rules:
 
-- **Filename:** `YYYY-MM-DD-HHmm-<topic-slug>.md` (slug: lowercase ASCII, hyphens, 2–5 words, e.g. `2026-06-10-1432-clerk-jwt-validation.md`).
+- **Filename:** `YYYY-MM-DD-HHmm-<topic-slug>.md` (e.g. `2026-06-10-1432-clerk-jwt-validation.md`). Build the slug deterministically:
+  1. Take 2–5 words that name the topic.
+  2. Transliterate Turkish characters: `ç→c ğ→g ı→i ö→o ş→s ü→u` (and uppercase equivalents).
+  3. Lowercase; replace every non-alphanumeric run with a single hyphen; trim leading/trailing hyphens.
+  4. **Collision:** if the target filename already exists (same minute, same topic), append `-2`, `-3`, … to the slug. Never overwrite an existing entry.
 - **Frontmatter is the index.** RECALL mode reads only frontmatter, so `title` and `summary` (one line, ≤160 chars) must stand alone without opening the body.
 - **Context fields are mandatory.** Fill `project`, `directory`, `chat`:
   - Claude Code: `directory` = `pwd`; `project` = git repo name (`basename $(git rev-parse --show-toplevel)` if inside a repo, else cwd basename); `chat` = `-`.
   - Claude.ai: `chat` = the conversation's title/topic (infer from the conversation if not explicit); `project` = Claude Project name if the chat is in one, else `-`; `directory` = `-`.
-- **Verbatim blocks** are wrapped in five-backtick fences (`` ````` ``) so nested Markdown/code fences inside the original messages don't break the file.
+- **Verbatim blocks** are wrapped in five-backtick fences (`` ````` ``) so nested Markdown/code fences inside the original messages don't break the file. If the verbatim content itself contains a run of five or more backticks, use a fence one backtick longer than the longest run inside the content.
 
 ### Steps (Claude Code)
 
@@ -88,8 +92,8 @@ Write the entry file to `/mnt/user-data/outputs/`, present it, and remind the us
 1. Collect entry files:
    - Claude Code: `ls ~/.claude/look-again/*.md`
    - Claude.ai: `.md` files in `/mnt/user-data/uploads/` that contain look-again frontmatter (`id:` + `summary:` keys).
-2. Read **only the frontmatter** of each file (e.g. `awk '/^---$/{n++} n==1' file` or `head -n 15`). Do not load full bodies — entries can be large.
-3. Present a list sorted newest-first, in the user's language:
+2. Read **only the frontmatter** of each file (e.g. `awk '/^---$/{n++; if(n==2)exit} n==1' file` or `head -n 15`). Do not load full bodies — entries can be large.
+3. Present a list sorted newest-first. **List language** = the language of the message that triggered RECALL; if that's ambiguous, use the current conversation's language (entry `language:` fields describe the entries, not the list). Entries with `status: blocked` or `status: finalized` get that status appended to their summary cell (e.g. `… (finalized)`); they are listed, not hidden.
 
 ```
 | # | Tarih | Başlık | Nerede | Özet |
@@ -111,6 +115,9 @@ Write the entry file to `/mnt/user-data/outputs/`, present it, and remind the us
 ## Edge cases
 
 - **Trigger as the very first message** (nothing to save): say there's no prior exchange yet; offer to save after the next response.
+- **`git rev-parse` fails** (not a repo, git missing): set `project` = cwd basename; never let this abort the save.
+- **`~/.claude/look-again/` can't be created** (permissions, read-only fs): report the error and offer to write the entry to the current directory instead — never drop the content silently.
+- **Reopening a `finalized` entry:** continue normally, but note in the recap that the entry was marked finalized and ask whether to reopen it (set `status: in-progress`) or just consult it.
 - **Duplicate save of the same exchange:** allowed, but note the earlier entry's filename in the confirmation.
 - **Very long responses:** still verbatim. Disk is cheap; fidelity is the point of this skill.
 - **Corrupted/foreign .md in the folder:** skip files lacking the `id:`/`summary:` frontmatter keys; mention skipped count only if >0.
