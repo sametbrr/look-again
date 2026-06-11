@@ -1,0 +1,8 @@
+{
+  "name": "look-again",
+  "description": "Save conversation checkpoints as markdown files and resume them later with full context",
+  "author": { "name": "sametbrr", "email": "sametbrr@gmail.com" },
+  "repository": "https://github.com/sametbrr/look-again",
+  "license": "MIT",
+  "keywords": ["checkpoint", "context", "resume", "productivity"]
+}
