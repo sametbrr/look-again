@@ -2,7 +2,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Agent Skills](https://img.shields.io/badge/agentskills.io-compatible-blue)](https://agentskills.io)
 
-[Hızlı Başlangıç](#hızlı-başlangıç) • [Kurulum](#kurulum) • [Kullanım](#kullanım) • [Yapılandırma](#yapılandırma) • [Sınırlamalar](#sınırlamalar)
+[Hızlı Başlangıç](#hızlı-başlangıç) • [Kurulum](#kurulum) • [Kullanım](#kullanım) • [Yapılandırma](#yapılandırma) • [Sınırlamalar](#sınırlamalar) • [Katkıda Bulunma](#katkıda-bulunma)
 
 # Look Again
 
@@ -106,6 +106,15 @@ Codex'in `workspace-write` sandbox'ında çalışma alanı dışına yazma engel
 Claude.ai'de sandbox dosya sistemi konuşmalar arasında sıfırlanır; checkpoint'ler sunucu tarafında kalıcı olamaz.
 
 **Geçici çözüm:** SAVE, kaydı indirilebilir dosya olarak sunar — yerelde saklayın (örn. `~/.agents/look-again/`) ve RECALL için gelecekteki bir sohbete yeniden yükleyin.
+
+---
+
+## Katkıda Bulunma
+
+- Sorular ve fikirler: [Discussions](https://github.com/sametbrr/look-again/discussions)
+- Hatalar: [issue takibi](https://github.com/sametbrr/look-again/issues)
+- Pull request'ler: önce [katkı rehberini](https://github.com/sametbrr/.github/blob/main/CONTRIBUTING.md) okuyun
+- Güvenlik bildirimleri: herkese açık issue yerine [güvenlik politikasını](https://github.com/sametbrr/look-again/security/policy) izleyin
 
 ---
 

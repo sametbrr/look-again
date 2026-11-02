@@ -2,7 +2,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Agent Skills](https://img.shields.io/badge/agentskills.io-compatible-blue)](https://agentskills.io)
 
-[Quick Start](#quick-start) • [Installation](#installation) • [Usage](#usage) • [Configuration](#configuration) • [Limitations](#limitations)
+[Quick Start](#quick-start) • [Installation](#installation) • [Usage](#usage) • [Configuration](#configuration) • [Limitations](#limitations) • [Contributing](#contributing)
 
 # Look Again
 
@@ -106,6 +106,15 @@ In Codex's `workspace-write` sandbox a write outside the workspace may be blocke
 On Claude.ai the sandbox filesystem resets between conversations, so checkpoints cannot persist server-side.
 
 **Workaround:** SAVE presents the entry as a downloadable file — keep it locally (e.g. in `~/.agents/look-again/`) and upload it back to a future chat to RECALL.
+
+---
+
+## Contributing
+
+- Questions and ideas: [Discussions](https://github.com/sametbrr/look-again/discussions)
+- Bugs: [issue tracker](https://github.com/sametbrr/look-again/issues)
+- Pull requests: read the [contribution guide](https://github.com/sametbrr/.github/blob/main/CONTRIBUTING.md) first
+- Security reports: follow the [security policy](https://github.com/sametbrr/look-again/security/policy), not a public issue
 
 ---
 
