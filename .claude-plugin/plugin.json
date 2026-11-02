@@ -1,8 +1,10 @@
 {
   "name": "look-again",
-  "description": "Save conversation checkpoints as markdown files and resume them later with full context",
-  "author": { "name": "sametbrr", "email": "sametbrr@gmail.com" },
+  "version": "1.2.0",
+  "description": "Save conversation checkpoints as markdown files and resume them later with full context — shared between Claude Code and Codex",
+  "author": { "name": "sametbrr", "email": "sametbrr@gmail.com", "url": "https://github.com/sametbrr" },
+  "homepage": "https://github.com/sametbrr/look-again",
   "repository": "https://github.com/sametbrr/look-again",
   "license": "MIT",
-  "keywords": ["checkpoint", "context", "resume", "productivity"]
+  "keywords": ["checkpoint", "context", "resume", "productivity", "agent-skills", "claude-code", "codex"]
 }

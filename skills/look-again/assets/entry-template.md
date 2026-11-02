@@ -4,10 +4,10 @@ date: 2026-06-10T14:32:00+03:00          # ISO 8601 with timezone
 title: "Short human title (≤60 chars)"
 summary: "One line, ≤160 chars. This is what RECALL mode shows in the list."
 tags: [tag1, tag2]                       # 1–5 lowercase tags
-source: claude-code                      # claude-code | claude-ai
-project: "cofiner-api"                   # Claude Code: git repo name (or cwd basename); Claude.ai: Project name or "-"
-directory: "/Users/samet/dev/cofiner-api" # Claude Code: absolute cwd; Claude.ai: "-"
-chat: "Clerk SSO mimarisi"               # Claude.ai: conversation title/topic; Claude Code: "-"
+source: claude-code                      # claude-code | codex | agent | claude-ai
+project: "cofiner-api"                   # local agent: git repo name (or cwd basename); Claude.ai: Project name or "-"
+directory: "/Users/dev/cofiner-api"   # local agent: absolute cwd; Claude.ai: "-"
+chat: "Clerk SSO mimarisi"               # Claude.ai: conversation title/topic; local agent: "-"
 language: tr                             # conversation language: tr | en
 status: in-progress                      # in-progress | finalized | blocked
 ---
@@ -59,7 +59,7 @@ status: in-progress                      # in-progress | finalized | blocked
 ## Last Response (verbatim)
 
 `````
-<Claude's full reply, exactly as written>
+<the assistant's full reply, exactly as written>
 `````
 
 ## Artifacts (optional)
