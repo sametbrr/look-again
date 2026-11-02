@@ -2,6 +2,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Agent Skills](https://img.shields.io/badge/agentskills.io-compatible-blue)](https://agentskills.io)
 
+[Hızlı Başlangıç](#hızlı-başlangıç) • [Kurulum](#kurulum) • [Kullanım](#kullanım) • [Yapılandırma](#yapılandırma) • [Sınırlamalar](#sınırlamalar)
+
 # Look Again
 
 Konuşma checkpoint'lerini markdown dosyaları olarak kaydeden ve daha sonra tam bağlamla devam ettiren Claude Code ve Codex için bir Agent Skill ve plugin — kararlar, reddedilen alternatifler ve nihai plan birebir korunur.
@@ -63,6 +65,30 @@ codex plugin add look-again@skill-hub
 
 Yeni bir oturum başlatın. Checkpoint kaydetme veya devam ettirmeden bahsettiğinizde skill otomatik yüklenir.
 
+---
+
+## Kullanım
+
+Skill, modu doğal dilden algılar — Türkçe veya İngilizce:
+
+```
+> "look again"                     # SAVE: mevcut durumu checkpoint olarak kaydeder
+> "tekrar bak"                     # SAVE, Türkçe
+> "look again list"                # RECALL: kayıtları listeler, devam için birini seç
+> "tekrar bakacaklarım nelerdi"    # RECALL, Türkçe
+```
+
+| Mod | Tetikleyici örnekler | Ne olur |
+|---|---|---|
+| **SAVE** | "look again", "tekrar bak", "save this for later", "bunu kaydet" | Checkpoint dosyası yazar: bağlam görüntüsü + nihai plan + son mesajlaşma birebir |
+| **RECALL** | "look again list", "tekrar bakacaklarım nelerdi", "continue where we left off" | Kayıtları yeniden-eskiye listeler; birini seçince devam moduna geçilir |
+
+Kayıtlar `YYYY-MM-DD-HHmm-<topic-slug>.md` olarak adlandırılır ve [skills/look-again/assets/entry-template.md](skills/look-again/assets/entry-template.md) şablonunu izler. Devam modunda asistan kayıtlı bağlamı benimser, reddedilen alternatifleri asla yeniden önermez ve kayıtlı sonraki adımlardan devam eder.
+
+---
+
+## Yapılandırma
+
 ### Checkpoint klasörü
 
 | Sıra | Konum |
@@ -72,19 +98,6 @@ Yeni bir oturum başlatın. Checkpoint kaydetme veya devam ettirmeden bahsettiğ
 | eski | `~/.claude/look-again/` (v1.1 ve öncesi): RECALL okumaya devam eder ve taşımayı önerir |
 
 Codex'in `workspace-write` sandbox'ında çalışma alanı dışına yazma engellenebilir. Bu durumda skill onay ister ya da o seferlik `./.look-again/` altına kaydeder.
-
----
-
-## Kullanım
-
-Skill, modu doğal dilden algılar — Türkçe veya İngilizce:
-
-| Mod | Tetikleyici örnekler | Ne olur |
-|---|---|---|
-| **SAVE** | "look again", "tekrar bak", "save this for later", "bunu kaydet" | Checkpoint dosyası yazar: bağlam görüntüsü + nihai plan + son mesajlaşma birebir |
-| **RECALL** | "look again list", "tekrar bakacaklarım nelerdi", "continue where we left off" | Kayıtları yeniden-eskiye listeler; birini seçince devam moduna geçilir |
-
-Kayıtlar `YYYY-MM-DD-HHmm-<topic-slug>.md` olarak adlandırılır ve [skills/look-again/assets/entry-template.md](skills/look-again/assets/entry-template.md) şablonunu izler. Devam modunda asistan kayıtlı bağlamı benimser, reddedilen alternatifleri asla yeniden önermez ve kayıtlı sonraki adımlardan devam eder.
 
 ---
 

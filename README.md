@@ -2,6 +2,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Agent Skills](https://img.shields.io/badge/agentskills.io-compatible-blue)](https://agentskills.io)
 
+[Quick Start](#quick-start) • [Installation](#installation) • [Usage](#usage) • [Configuration](#configuration) • [Limitations](#limitations)
+
 # Look Again
 
 An Agent Skill and plugin for Claude Code and Codex that saves conversation checkpoints as markdown files and resumes them later with full context — decisions, rejected alternatives, and the final plan preserved verbatim.
@@ -63,6 +65,30 @@ codex plugin add look-again@skill-hub
 
 Start a new session. The skill loads automatically when you mention saving or resuming a checkpoint.
 
+---
+
+## Usage
+
+The skill detects the mode from natural language — Turkish or English:
+
+```
+> "look again"                     # SAVE: checkpoint the current state
+> "tekrar bak"                     # SAVE, in Turkish
+> "look again list"                # RECALL: list entries, pick one to continue
+> "tekrar bakacaklarım nelerdi"    # RECALL, in Turkish
+```
+
+| Mode | Trigger examples | What happens |
+|---|---|---|
+| **SAVE** | "look again", "tekrar bak", "save this for later", "bunu kaydet" | Writes a checkpoint file: context snapshot + final plan + last exchange verbatim |
+| **RECALL** | "look again list", "tekrar bakacaklarım nelerdi", "continue where we left off" | Lists entries newest-first; pick one to switch into continuation mode |
+
+Entries are named `YYYY-MM-DD-HHmm-<topic-slug>.md` and follow [skills/look-again/assets/entry-template.md](skills/look-again/assets/entry-template.md). In continuation mode the assistant adopts the saved context, never re-proposes rejected alternatives, and continues from the saved next steps.
+
+---
+
+## Configuration
+
 ### Checkpoint folder
 
 | Order | Location |
@@ -72,19 +98,6 @@ Start a new session. The skill loads automatically when you mention saving or re
 | legacy | `~/.claude/look-again/` (v1.1 and earlier): still read by RECALL, which offers to move it |
 
 In Codex's `workspace-write` sandbox a write outside the workspace may be blocked. The skill then asks you to approve it, or saves to `./.look-again/` for that time.
-
----
-
-## Usage
-
-The skill detects the mode from natural language — Turkish or English:
-
-| Mode | Trigger examples | What happens |
-|---|---|---|
-| **SAVE** | "look again", "tekrar bak", "save this for later", "bunu kaydet" | Writes a checkpoint file: context snapshot + final plan + last exchange verbatim |
-| **RECALL** | "look again list", "tekrar bakacaklarım nelerdi", "continue where we left off" | Lists entries newest-first; pick one to switch into continuation mode |
-
-Entries are named `YYYY-MM-DD-HHmm-<topic-slug>.md` and follow [skills/look-again/assets/entry-template.md](skills/look-again/assets/entry-template.md). In continuation mode the assistant adopts the saved context, never re-proposes rejected alternatives, and continues from the saved next steps.
 
 ---
 
