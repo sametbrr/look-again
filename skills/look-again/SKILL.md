@@ -16,7 +16,7 @@ description: >-
   user doesn't say "look again" literally.
 compatibility: Local agents with a persistent home directory (Claude Code, OpenAI Codex, any Agent Skills client) share one folder, ~/.agents/look-again/ by default. Claude.ai presents the file for download; recall there needs the user to upload saved files.
 metadata:
-  version: "1.2.0"
+  version: "1.2.1"
   author: sametbrr@gmail.com
 ---
 

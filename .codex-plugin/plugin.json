@@ -1,12 +1,24 @@
 {
   "name": "look-again",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Save conversation checkpoints as markdown files and resume them later with full context — shared between Claude Code and Codex",
-  "author": { "name": "sametbrr", "email": "sametbrr@gmail.com", "url": "https://github.com/sametbrr" },
+  "author": {
+    "name": "sametbrr",
+    "email": "sametbrr@gmail.com",
+    "url": "https://github.com/sametbrr"
+  },
   "homepage": "https://github.com/sametbrr/look-again",
   "repository": "https://github.com/sametbrr/look-again",
   "license": "MIT",
-  "keywords": ["checkpoint", "context", "resume", "productivity", "agent-skills", "claude-code", "codex"],
+  "keywords": [
+    "checkpoint",
+    "context",
+    "resume",
+    "productivity",
+    "agent-skills",
+    "claude-code",
+    "codex"
+  ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Look Again",
@@ -14,7 +26,11 @@
     "longDescription": "Captures decisions, rejected alternatives, the final plan and the last exchange verbatim into a markdown checkpoint, then lists and reopens checkpoints later. Claude Code and Codex share one checkpoint folder.",
     "developerName": "sametbrr",
     "category": "Productivity",
-    "capabilities": ["Interactive", "Read", "Write"],
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
     "defaultPrompt": [
       "look again",
       "look again list",
